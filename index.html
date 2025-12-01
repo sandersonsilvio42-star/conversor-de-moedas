@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <title>Desafio JS</title>
+</head>
+
+<body>
+    <image id="gif" src="./assets/money-8970_512.gif" alt="troca-dinheiro">
+
+        <div class="caixa-top">
+            <label id="sel1">Valor a ser convertido:</label>
+            <select class="currency-trade">
+                <option>R$ Real Brasileiro</option>
+                <option>U$ Dólar Americano</option>
+                <option>R$ Euro</option>
+                <option>£ Libra</option>
+                <option>BTC Bitcoin</option>
+            </select>
+
+            <label>Para:</label>
+            <select class="currency-select">
+                <option value="dolar">U$ Dólar Americano</option>
+                <option value="euro">€ Euro</option>
+                <option value="libra">£ Libra</option>
+                <option value="bitcoin">BTC Bitcoin</option>
+            </select>
+
+            <label> Valor:
+                <br>
+                <input class="trade" placeholder="R$ 10.000,00">
+
+            </label>
+
+
+            <button id="converter">Converter</button>
+            <div class="caixa-under">
+                <div class="brasil">
+                    <img class="mod" id="image-trade" src="./assets/real.png" alt="real">
+                    <p class="moeda">Real</p>
+                    <p class="valor-convert">R$ 0</p>
+                </div>
+
+                <img class="setinha" src="./assets/Vector.png" alt="seta">
+
+                <div class="usa">
+                    <img class="image" src="./assets/dollar.png" alt="Dóllar">
+                    <p class="moeda" id="dol">Dólar Americano</p>
+                    <p class="valor-final">U$ 0</p>
+                </div>
+
+            </div>
+        </div>
+</body>
+<script src="./javascript.js"></script>
+
+</html>

@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+}
+
+body {
+    background-color: #7726c7;
+}
+
+#gif {
+    width: 150px;
+    height: 150px;
+    margin-top: 12px;
+    margin-bottom: 16px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.caixa-top {
+    width: 375px;
+    background-color: rgb(107, 135, 183);
+    border-radius: 20px;
+    padding-top: 44px;
+    display: block;
+    margin: 44px auto 10px auto;
+    padding-bottom: 1px;
+}
+
+label {
+    width: 80px;
+    height: 18px;
+    font-size: 14px;
+    color: #ffffff;
+    margin-left: 24px;
+}
+
+
+select {
+    width: 327px;
+    height: 72px;
+    border-radius: 5px;
+    margin-left: 7%;
+    border: none;
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 327px;
+    height: 72px;
+    border-radius: 5px;
+    margin-left: 7%;
+    border: none;
+    padding-left: 15px;
+    margin-top: 20px;
+}
+
+#converter {
+    width: 327px;
+    height: 48px;
+    background-color: #0fd69efe;
+    box-shadow: 0px 0px 4px 0px #ff8400fe;
+    font-size: 16px;
+    color: #ffffff;
+    border-radius: 5px;
+    margin-left: 7%;
+    border: none;
+    margin-top: 23px;
+    cursor: pointer;
+}
+
+#converter:hover {
+    background-color: #ff8400fe;
+    opacity: 0.8;
+    transition: 0.5s;
+}
+
+#converter:active {
+    opacity: 0.4;
+}
+
+.caixa-under {
+    background-color: none;
+    width: 327px;
+    height: 320px;
+    border-radius: 20px;
+    border-color: #ff8400fe;
+    border-width: 5px;
+    border-style: solid;
+    margin-left: 26px;
+    margin-top: 36px;
+    margin-bottom: 20px;
+    padding: 12px;
+}
+
+.caixa-under {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.setinha {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ff8400fe;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -10px;
+}
+
+.moeda {
+    width: 28px;
+    height: 18px;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.valor {
+    width: 121px;
+    height: 18px;
+    font-size: 20px;
+    color: #ffffff;
+}
+
+.valor-convert {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    color: #ffffff;
+}
+
+.valor-final {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 12px;
+
+    color: #ffffff;
+}
