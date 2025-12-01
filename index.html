@@ -13,25 +13,45 @@
 </head>
 
 <body>
-    <image id="gif" src="./assets/money-8970_512.gif" alt="troca-dinheiro">
+    <!-- aqui só alterou o image para img  -->
+    <img id="gif" src="./assets/money-8970_512.gif" alt="troca-dinheiro">
 
         <div class="caixa-top">
             <label id="sel1">Valor a ser convertido:</label>
-            <select class="currency-trade">
+            <!-- <select class="currency-trade">
                 <option>R$ Real Brasileiro</option>
                 <option>U$ Dólar Americano</option>
                 <option>R$ Euro</option>
                 <option>£ Libra</option>
                 <option>BTC Bitcoin</option>
+            </select> -->
+
+            <select class="currency-from">
+                <option value="USD">Dólar</option>
+                <option value="EUR">Euro</option>
+                <option value="GBP">Libra</option>
+                <option value="BTC">Bitcoin</option>
+                <option value="BRL">Real</option>
             </select>
 
+
             <label>Para:</label>
-            <select class="currency-select">
-                <option value="dolar">U$ Dólar Americano</option>
-                <option value="euro">€ Euro</option>
-                <option value="libra">£ Libra</option>
-                <option value="bitcoin">BTC Bitcoin</option>
+            <!-- <select class="currency-select">
+                <option value="dolar2">U$ Dólar Americano</option>
+                <option value="euro2">€ Euro</option>
+                <option value="libra2">£ Libra</option>
+                <option value="bitcoin2">BTC Bitcoin</option>
+                <option value="real2">R$ Real Brasileiro</option>
+            </select> -->
+
+            <select class="currency-to">
+                <option value="USD">Dólar</option>
+                <option value="EUR">Euro</option>
+                <option value="GBP">Libra</option>
+                <option value="BTC">Bitcoin</option>
+                <option value="BRL">Real</option>
             </select>
+
 
             <label> Valor:
                 <br>
