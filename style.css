@@ -121,6 +121,8 @@ input {
     height: 18px;
     font-size: 14px;
     color: #ffffff;
+    margin-top: -15px;
+    margin-bottom: 5px;
 }
 
 .valor {
@@ -144,7 +146,7 @@ input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: -25px;
     padding: 12px;
 
     color: #ffffff;
@@ -170,7 +172,7 @@ input {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
 .brasil img, .usa img {
