@@ -13,9 +13,7 @@ body {
 #gif {
     width: 150px;
     height: 150px;
-    margin-top: 12px;
-    margin-bottom: 16px;
-    display: block;
+    display: flex;
     margin-left: auto;
     margin-right: auto
 }
@@ -26,7 +24,7 @@ body {
     border-radius: 20px;
     padding-top: 44px;
     display: block;
-    margin: 44px auto 10px auto;
+    margin: -6px auto 10px auto;
     padding-bottom: 1px;
 }
 
