@@ -187,3 +187,17 @@ input {
     align-items: center;
     margin: 0 10px; /* espaçamento lateral */
 }
+
+#ultima-atualizacao {
+  font-size: 15px bold;   
+  text-align: center;            /* Alinha à direita */
+  margin-top: -36px;             /* Espaço acima */
+  padding-right: 5px;           /* Pequeno respiro à direita */
+  padding-top: 8px;             /* Espaço entre a linha e o texto */
+  letter-spacing: 0.5px;        /* Espaçamento leve entre letras */
+  color: hsl(31, 100%, 50%);
+}
+
+#ultima-atualizacao:hover {
+  color: hsl(0, 100%, 50%);               /* Azul ao passar o mouse */
+}
