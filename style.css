@@ -113,6 +113,7 @@ input {
     justify-content: center;
     align-items: center;
     margin-top: -10px;
+    margin-left: -15px;
 }
 
 .moeda {
@@ -120,6 +121,8 @@ input {
     height: 18px;
     font-size: 14px;
     color: #ffffff;
+    margin-top: -15px;
+    margin-bottom: 5px;
 }
 
 .valor {
@@ -143,8 +146,47 @@ input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: -25px;
     padding: 12px;
 
     color: #ffffff;
+}
+/* apartir daqui */
+
+.caixa-under {
+    width: 327px;
+    min-height: 180px;
+    border-radius: 20px;
+    border: 5px solid #ff8400fe;
+    margin: 36px auto 20px auto;
+    padding: 12px;
+
+    display: flex;
+    flex-direction: column;       /* lado a lado */
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(107, 135, 183); /* opcional: fundo igual ao topo */
+}
+
+.brasil, .usa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.brasil img, .usa img {
+    width: 60px;
+    height: 60px;
+}
+
+.setinha {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ff8400fe;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px; /* espaçamento lateral */
 }
