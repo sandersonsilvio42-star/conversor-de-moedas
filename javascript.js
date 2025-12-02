@@ -178,30 +178,62 @@ botao.addEventListener("click", abacate) //abacate e so o
 //nome da minha função criada  e click e o evento
 */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const btnConverter = document.getElementById("converter");
   const selectFrom = document.querySelector(".currency-from");
   const selectTo = document.querySelector(".currency-to");
   const inputValor = document.querySelector(".trade");
 
   // Caixa esquerda (origem)
-  const imgFrom = document.getElementById("image-trade");      // ./assets/real.png
-  const labelFrom = document.querySelector(".brasil .moeda");   // "Real"
-  const outOrigem = document.querySelector(".valor-convert");   // R$ 0
+  const imgFrom = document.getElementById("image-trade");      
+  const labelFrom = document.querySelector(".brasil .moeda");   
+  const outOrigem = document.querySelector(".valor-convert");   
 
   // Caixa direita (destino)
-  const imgTo = document.querySelector(".usa .image");          // ./assets/dollar.png
-  const labelTo = document.getElementById("dol");               // "Dólar Americano"
-  const outDestino = document.querySelector(".valor-final");    // U$ 0
+  const imgTo = document.querySelector(".usa .image");          
+  const labelTo = document.getElementById("dol");               
+  const outDestino = document.querySelector(".valor-final");    
 
-  // Cotações fixas (BRL como base)
+  // Elemento para mostrar última atualização
+  const ultimaAtualizacao = document.getElementById("ultima-atualizacao");
+
+  // Estrutura inicial das moedas
   const rates = {
-    USD: { rate: 5.2,  label: "Dólar Americano", img: "./assets/dollar.png", locale: "en-US" },
-    EUR: { rate: 6.2,  label: "Euro",            img: "./assets/euro.png",   locale: "de-DE" },
-    GBP: { rate: 7.08, label: "Libra",           img: "./assets/libra.png",  locale: "en-GB" },
-    BTC: { rate: 458046.19, label: "Bitcoin",    img: "./assets/bitcoin.png",locale: "en-US" },
-    BRL: { rate: 1,    label: "Real",            img: "./assets/real.png",   locale: "pt-BR" }
+    USD: { rate: 0, label: "Dólar Americano", img: "./assets/dollar.png", locale: "en-US" },
+    EUR: { rate: 0, label: "Euro",            img: "./assets/euro.png",   locale: "de-DE" },
+    GBP: { rate: 0, label: "Libra",           img: "./assets/libra.png",  locale: "en-GB" },
+    BTC: { rate: 0, label: "Bitcoin",         img: "./assets/bitcoin.png",locale: "en-US" },
+    BRL: { rate: 1, label: "Real",            img: "./assets/real.png",   locale: "pt-BR" }
   };
+
+  // 🔹 Função para buscar cotações reais via AwesomeAPI
+  async function atualizarRates() {
+    try {
+      const resposta = await fetch("https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,GBP-BRL,BTC-BRL");
+      const dados = await resposta.json();
+
+      rates.USD.rate = parseFloat(dados.USDBRL.bid);
+      rates.EUR.rate = parseFloat(dados.EURBRL.bid);
+      rates.GBP.rate = parseFloat(dados.GBPBRL.bid);
+      rates.BTC.rate = parseFloat(dados.BTCBRL.bid);
+      rates.BRL.rate = 1;
+
+      // Exibe data/hora da última atualização formatada
+      const agora = new Date();
+      const dia = String(agora.getDate()).padStart(2, "0");
+      const mes = String(agora.getMonth() + 1).padStart(2, "0");
+      const ano = agora.getFullYear();
+      const hora = String(agora.getHours()).padStart(2, "0");
+      const minuto = String(agora.getMinutes()).padStart(2, "0");
+
+      ultimaAtualizacao.textContent = `Última atualização: ${dia}/${mes}/${ano} às ${hora}:${minuto}`;
+
+      console.log("Cotações atualizadas:", rates);
+    } catch (erro) {
+      console.error("Erro ao buscar cotações:", erro);
+      ultimaAtualizacao.textContent = "Erro ao atualizar cotações";
+    }
+  }
 
   function formatCurrency(value, code, locale) {
     if (code === "BTC") {
@@ -216,10 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function parseValorBR(valorStr) {
     if (!valorStr) return NaN;
-    // Remove qualquer símbolo/moeda e espaços
     let s = valorStr.replace(/[^\d.,-]/g, "").trim();
-    // Se tiver separadores brasileiros (pontos de milhar e vírgula decimal)
-    // Ex: "10.000,50" -> "10000.50"
     const temVirgula = s.includes(",");
     const temPonto = s.includes(".");
     if (temVirgula && temPonto) {
@@ -233,12 +262,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function atualizarLabelsEImagens() {
     const from = rates[selectFrom.value];
     const to = rates[selectTo.value];
-
-    // Atualiza caixa esquerda (origem)
     labelFrom.textContent = from.label;
     imgFrom.src = from.img;
-
-    // Atualiza caixa direita (destino)
     labelTo.textContent = to.label;
     imgTo.src = to.img;
   }
@@ -248,7 +273,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const fromCode = selectFrom.value;
     const toCode = selectTo.value;
 
-    // Valida códigos e valor
     const from = rates[fromCode];
     const to = rates[toCode];
 
@@ -264,15 +288,18 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    if (!to.rate || to.rate <= 0 || !from.rate || from.rate <= 0) {
+      outDestino.textContent = "Cotação indisponível";
+      outOrigem.textContent = "—";
+      return;
+    }
+
     // Passo 1: origem -> reais
     const emReais = valor * from.rate;
     // Passo 2: reais -> destino
     const convertido = emReais / to.rate;
 
-    // Exibe o valor original na caixa esquerda
     outOrigem.textContent = formatCurrency(valor, fromCode, from.locale);
-
-    // Exibe o convertido na caixa direita
     outDestino.textContent = formatCurrency(convertido, toCode, to.locale);
   }
 
@@ -281,8 +308,12 @@ document.addEventListener("DOMContentLoaded", () => {
   selectTo.addEventListener("change",   () => { atualizarLabelsEImagens(); converter(); });
   btnConverter.addEventListener("click", converter);
 
-  // Inicializa UI
+  // 🔹 Inicializa
+  btnConverter.disabled = true; // desabilita até carregar as taxas
+  await atualizarRates();       // pega as cotações reais
   atualizarLabelsEImagens();
-  // Se quiser já calcular com o placeholder vazio, comente a linha abaixo
-  // converter();
+  btnConverter.disabled = false; // libera o botão
+
+  // Atualiza automaticamente a cada 30 minutos
+  setInterval(atualizarRates, 1800000);
 });
