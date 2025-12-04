@@ -199,11 +199,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Estrutura inicial das moedas
   const rates = {
-    USD: { rate: 0, label: "Dólar Americano", img: "./assets/dollar.png", locale: "en-US" },
-    EUR: { rate: 0, label: "Euro",            img: "./assets/euro.png",   locale: "de-DE" },
-    GBP: { rate: 0, label: "Libra",           img: "./assets/libra.png",  locale: "en-GB" },
-    BTC: { rate: 0, label: "Bitcoin",         img: "./assets/bitcoin.png",locale: "en-US" },
-    BRL: { rate: 1, label: "Real",            img: "./assets/real.png",   locale: "pt-BR" }
+    USD: { rate: 0, label: "Dólar Americano", symbol: "U$", img: "./assets/dollar.png", locale: "en-US" },
+    EUR: { rate: 0, label: "Euro",            symbol: "€",  img: "./assets/euro.png",   locale: "de-DE" },
+    GBP: { rate: 0, label: "Libra",           symbol: "£",  img: "./assets/libra.png",  locale: "en-GB" },
+    BTC: { rate: 0, label: "Bitcoin",         symbol: "₿",  img: "./assets/bitcoin.png",locale: "en-US" },
+    BRL: { rate: 1, label: "Real",            symbol: "R$", img: "./assets/real.png",   locale: "pt-BR" }
   };
 
   // 🔹 Função para buscar cotações reais via AwesomeAPI
@@ -228,7 +228,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       ultimaAtualizacao.textContent = `Última atualização: ${dia}/${mes}/${ano} às ${hora}:${minuto}`;
 
-      console.log("Cotações atualizadas:", rates);
+      // Atualiza painel lateral de moedas
+      atualizarPainelMoedas();
     } catch (erro) {
       console.error("Erro ao buscar cotações:", erro);
       ultimaAtualizacao.textContent = "Erro ao atualizar cotações";
@@ -303,6 +304,54 @@ document.addEventListener("DOMContentLoaded", async () => {
     outDestino.textContent = formatCurrency(convertido, toCode, to.locale);
   }
 
+  // 🔹 Painel lateral de moedas
+  function atualizarPainelMoedas() {
+    const painel = document.querySelector(".grafic");
+    painel.innerHTML = ""; // limpa antes de recriar
+
+    Object.keys(rates).forEach(code => {
+      const moeda = rates[code];
+
+      const linha = document.createElement("div");
+      linha.style.display = "flex";
+      linha.style.alignItems = "center";
+      linha.style.justifyContent = "space-between";
+      linha.style.margin = "8px 0";
+      linha.style.padding = "6px";
+      linha.style.background = "rgba(255,255,255,0.1)";
+      linha.style.borderRadius = "8px";
+
+      const esquerda = document.createElement("div");
+      esquerda.style.display = "flex";
+      esquerda.style.alignItems = "center";
+      esquerda.style.gap = "10px";
+
+      const img = document.createElement("img");
+      img.src = moeda.img;
+      img.alt = moeda.label;
+      img.style.width = "32px";
+      img.style.height = "32px";
+
+      const nome = document.createElement("span");
+      nome.textContent = `${moeda.symbol} ${moeda.label}`;
+      nome.style.color = "#fff";
+      nome.style.fontSize = "14px";
+
+      esquerda.appendChild(img);
+      esquerda.appendChild(nome);
+
+      const valor = document.createElement("span");
+      valor.textContent = formatCurrency(moeda.rate, code, moeda.locale);
+      valor.style.color = "#ff8400";
+      valor.style.fontWeight = "bold";
+
+      linha.appendChild(esquerda);
+      linha.appendChild(valor);
+
+      painel.appendChild(linha);
+    });
+  }
+
   // Eventos
   selectFrom.addEventListener("change", () => { atualizarLabelsEImagens(); converter(); });
   selectTo.addEventListener("change",   () => { atualizarLabelsEImagens(); converter(); });
@@ -314,6 +363,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   atualizarLabelsEImagens();
   btnConverter.disabled = false; // libera o botão
 
-  // Atualiza automaticamente a cada 30 minutos
-  setInterval(atualizarRates, 1800000);
+  // Atualiza automaticamente as taxas e painel a cada 1 minuto
+  setInterval(atualizarRates, 60000);
 });
+
