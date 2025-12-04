@@ -12,52 +12,84 @@
     <title>Desafio JS</title>
 </head>
 
-<body>
-    <image id="gif" src="./assets/money-8970_512.gif" alt="troca-dinheiro">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        <div class="caixa-top">
-            <label id="sel1">Valor a ser convertido:</label>
-            <select class="currency-trade">
+
+<body>
+    <!-- aqui só alterou o image para img  -->
+    <!-- <img id="gif" src="./assets/logo.gif" alt="troca-dinheiro"> -->
+
+    <div class="grafic">
+        <canvas id="currencyChart"></canvas>
+    </div>
+
+
+    <div class="caixa-top">
+        <label id="sel1">Valor a ser convertido:</label>
+        <!-- <select class="currency-trade">
                 <option>R$ Real Brasileiro</option>
                 <option>U$ Dólar Americano</option>
                 <option>R$ Euro</option>
                 <option>£ Libra</option>
                 <option>BTC Bitcoin</option>
-            </select>
+            </select> -->
 
-            <label>Para:</label>
-            <select class="currency-select">
-                <option value="dolar">U$ Dólar Americano</option>
-                <option value="euro">€ Euro</option>
-                <option value="libra">£ Libra</option>
-                <option value="bitcoin">BTC Bitcoin</option>
-            </select>
+        <select class="currency-from">
+            <option value="USD">U$ Dólar Americano</option>
+            <option value="EUR">€ Euro</option>
+            <option value="GBP">£ Libra</option>
+            <option value="BTC">₿ Bitcoin</option>
+            <option value="BRL">R$ Real</option>
+        </select>
 
-            <label> Valor:
-                <br>
-                <input class="trade" placeholder="R$ 10.000,00">
+        
 
-            </label>
+        <label>Para:</label>
+        <!-- <select class="currency-select">
+                <option value="dolar2">U$ Dólar Americano</option>
+                <option value="euro2">€ Euro</option>
+                <option value="libra2">£ Libra</option>
+                <option value="bitcoin2">BTC Bitcoin</option>
+                <option value="real2">R$ Real Brasileiro</option>
+            </select> -->
+
+        <select class="currency-to">
+            <option value="USD">U$ Dólar Americano</option>
+            <option value="EUR">€ Euro</option>
+            <option value="GBP">£ Libra</option>
+            <option value="BTC">₿ Bitcoin</option>
+            <option value="BRL">R$ Real</option>
+        </select>
 
 
-            <button id="converter">Converter</button>
-            <div class="caixa-under">
-                <div class="brasil">
-                    <img class="mod" id="image-trade" src="./assets/real.png" alt="real">
-                    <p class="moeda">Real</p>
-                    <p class="valor-convert">R$ 0</p>
-                </div>
+        <label> Valor:
+            <br>
+            <input class="trade" type="number" placeholder="R$ 10.000,00">
 
-                <img class="setinha" src="./assets/Vector.png" alt="seta">
+        </label>
 
-                <div class="usa">
-                    <img class="image" src="./assets/dollar.png" alt="Dóllar">
-                    <p class="moeda" id="dol">Dólar Americano</p>
-                    <p class="valor-final">U$ 0</p>
-                </div>
 
+        <button id="converter">Converter</button>
+        <div class="caixa-under">
+            <div class="brasil">
+                <img class="mod" id="image-trade" src="./assets/real.png" alt="real">
+                <p class="moeda">Real</p>
+                <p class="valor-convert">R$ 0</p>
             </div>
+
+            <img class="setinha" src="./assets/teste1.gif" alt="seta">
+
+            <div class="usa">
+                <img class="image" src="./assets/dollar.png" alt="Dóllar">
+                <p class="moeda" id="dol">Dólar Americano</p>
+                <p class="valor-final">U$ 0</p>
+            </div>
+
         </div>
+    </div>
+
+    <p id="ultima-atualizacao"><strong>Última atualização:</strong></p>
+
 </body>
 <script src="./javascript.js"></script>
 
