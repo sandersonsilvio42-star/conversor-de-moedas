@@ -146,5 +146,16 @@ input {
     margin-bottom: 12px;
     padding: 12px;
 
-    color: #ffffff;
+/* Última atualização */
+#ultima-atualizacao {
+  font-size: 13px;
+  font-weight: bold;
+  color: #ffcc00;
+  position: absolute;
+  bottom: 195px;
+  right: 900px;
+  text-align: right;
+  opacity: 0.8;
+}
+
 }
